@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doc>
+  <page>
+    <field name="Page_Number">1</field>
+    <group name="Company">
+      <line name="Name"><field name="value">Mapping Suite S.A.</field></line>
+      <line name="Address1"><field name="value"></field></line>
+      <line name="Address2"><field name="value">3, rue Jules de Vicq</field></line>
+      <line name="City">
+        <field name="Zip_code">59800</field>
+        <field name="Name">LILLE</field>
+      </line>
+    </group>
+    <field name="Invoice_Number">0024657</field>
+    <field name="Invoice_Date">13/10/19</field>
+    <group name="Billing">
+        <line name="Name"><field name="value">M. Lenoir</field></line>
+        <line name="Address1"><field name="value"></field></line>
+        <line name="Address2"><field name="value">4, rue des Oiseaux</field></line>
+        <line name="City"><field name="value">69001 LYON</field></line>
+    </group>
+    <group name="Delivery">
+        <line name="Name"><field name="value">M. Legris</field></line>
+        <line name="Address1"><field name="value"></field></line>
+        <line name="Address2"><field name="value">14, avenue des Champs Elysées</field></line>
+        <line name="Zip_Code"><field name="value">75008</field></line>
+        <line name="City"><field name="value">PARIS</field></line>
+    </group>
+    <field name="Order_Number">159357</field>
+    <field name="Order_Date">10 Août 2019</field>
+    <field name="Delivery_Date">15 Septembre 2019</field>
+    <field name="Seller_number">1</field>
+    <field name="Seller_name">Aurélie Carton</field>
+    <field name="Carrier_Name">Ets Didier Grimonprez</field>
+    <group name="Products">
+      <line name="Product">
+        <field name="Designation">Infoprint 20 IBM</field>
+        <field name="Reference">432002</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">11500,00</field>
+        <field name="Amount">11500,00</field>
+      </line>
+      <line name="Feature"><field name="Designation">20 pages/mn A4-A3</field></line>
+      <line name="Feature"><field name="Designation">PCL5e - 8Mo</field></line>
+      <line name="Feature"><field name="Designation">Standard 500+150</field></line>
+      <line name="Option">
+        <field name="Designation">Recto-verso</field>
+        <field name="Reference">004402</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">4000,00</field>
+        <field name="Amount">4000,00</field>
+      </line>
+      <line name="Option">
+        <field name="Designation">Bac 500 pages</field>
+        <field name="Reference">004501</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">2500,00</field>
+        <field name="Amount">2500,00</field>
+      </line>
+      <line name="Option">
+        <field name="Designation">Carte Ethernet</field>
+        <field name="Reference">004161</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">2050,00</field>
+        <field name="Amount">2050,00</field>
+      </line>
+      <line name="Total">
+        <field name="Amount">20050,00</field>
+      </line>
+      <line name="Product">
+        <field name="Designation">Infoprint 32 IBM</field>
+        <field name="Reference">433202</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">18000,00</field>
+        <field name="Amount">18000,00</field>
+      </line>
+      <line name="Feature"><field name="Designation">20 pages/mn A4-A3</field></line>
+      <line name="Feature"><field name="Designation">PCL5e - 8Mo extensible</field></line>
+      <line name="Feature"><field name="Designation">Standard 2*500+50</field></line>
+      <line name="Feature"><field name="Designation">Parallèle</field></line>
+      <line name="Option">
+        <field name="Designation">Recto-verso</field>
+        <field name="Reference">004402</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">4000,00</field>
+        <field name="Amount">4000,00</field>
+      </line>
+      <line name="Option">
+        <field name="Designation">Bac 2500 pages</field>
+        <field name="Reference">004520</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">7900,00</field>
+        <field name="Amount">7900,00</field>
+      </line>
+      <line name="Option">
+        <field name="Designation">Carte Ethernet</field>
+        <field name="Reference">004161</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">2050,00</field>
+        <field name="Amount">2050,00</field>
+      </line>
+      <line name="Total">
+        <field name="Amount">31950,00 </field>
+      </line>
+    </group>
+    <field name="Legal_info">SIRET 123456789  Code APE 4455 RCS Lille n° 98776543221</field>
+    <field name="Siret">123456789</field>
+    <field name="APE">4455</field>
+    <field name="RCS">Lille n° 98776543221</field>
+  </page>
+  <page>
+    <field name="Page_Number">1</field>
+    <group name="Company">
+      <line name="Name"><field name="value">Mapping Suite S.A.</field></line>
+      <line name="Address1"><field name="value"></field></line>
+      <line name="Address2"><field name="value">3, rue Jules de Vicq</field></line>
+      <line name="City">
+        <field name="Zip_code">59800</field>
+        <field name="Name">LILLE</field>
+      </line>
+    </group>
+    <field name="Invoice_Number">0012601</field>
+    <field name="Invoice_Date">14/10/19</field>
+    <group name="Billing">
+        <line name="Name"><field name="value">M. Leblanc</field></line>
+        <line name="Address1"><field name="value"></field></line>
+        <line name="Address2"><field name="value">16, rue des Lions</field></line>
+        <line name="City"><field name="value">59290 WASQUEHAL</field></line>
+    </group>
+    <group name="Delivery">
+        <line name="Name"><field name="value">M. Lerouge</field></line>
+        <line name="Address1"><field name="value"></field></line>
+        <line name="Address2"><field name="value">14, avenue de la prairie</field></line>
+        <line name="Zip_Code"><field name="value">59150</field></line>
+        <line name="City"><field name="value">WATTRELOS</field></line>
+    </group>
+    <field name="Order_Number">123456</field>
+    <field name="Order_Date">12 Octobre 2019</field>
+    <field name="Delivery_Date">15 Octobre 2019</field>
+    <field name="Seller_number">1</field>
+    <field name="Seller_name">Aurélie Béhague</field>
+    <field name="Carrier_Name">Ets Didier Denneulin</field>
+    <group name="Products">
+      <line name="Product">
+        <field name="Designation">Infoprint 20 IBM</field>
+        <field name="Reference">432002</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">11500,00</field>
+        <field name="Amount">11500,00</field>
+      </line>
+      <line name="Feature"><field name="Designation">20 pages/mn A4-A3</field></line>
+      <line name="Feature"><field name="Designation">PCL5e - 8Mo</field></line>
+      <line name="Feature"><field name="Designation">Standard 500+150</field></line>
+      <line name="Option">
+        <field name="Designation">Recto-verso</field>
+        <field name="Reference">004402</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">4000,00</field>
+        <field name="Amount">4000,00</field>
+      </line>
+      <line name="Option">
+        <field name="Designation">Bac 500 pages</field>
+        <field name="Reference">004501</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">2500,00</field>
+        <field name="Amount">2500,00</field>
+      </line>
+      <line name="Option">
+        <field name="Designation">Carte Ethernet</field>
+        <field name="Reference">004161</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">2050,00</field>
+        <field name="Amount">2050,00</field>
+      </line>
+      <line name="Total">
+        <field name="Amount">20050,00</field>
+      </line>
+      <line name="Product">
+        <field name="Designation">Infoprint 32 IBM</field>
+        <field name="Reference">433202</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">18000,00</field>
+        <field name="Amount">18000,00</field>
+      </line>
+      <line name="Feature"><field name="Designation">20 pages/mn A4-A3</field></line>
+      <line name="Feature"><field name="Designation">PCL5e - 8Mo extensible</field></line>
+      <line name="Feature"><field name="Designation">Standard 2*500+50</field></line>
+      <line name="Feature"><field name="Designation">Parallèle</field></line>
+      <line name="Option">
+        <field name="Designation">Recto-verso</field>
+        <field name="Reference">004402</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">4000,00</field>
+        <field name="Amount">4000,00</field>
+      </line>
+      <line name="Option">
+        <field name="Designation">Bac 2500 pages</field>
+        <field name="Reference">004520</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">7900,00</field>
+        <field name="Amount">7900,00</field>
+      </line>
+      <line name="Option">
+        <field name="Designation">Carte Ethernet</field>
+        <field name="Reference">004161</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">2050,00</field>
+        <field name="Amount">2050,00</field>
+      </line>
+      <line name="Total">
+        <field name="Amount">31950,00 </field>
+      </line>
+      <line name="Product">
+        <field name="Designation">Infoprint 40 IBM</field>
+        <field name="Reference">433205</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">20000,00</field>
+        <field name="Amount">20000,00</field>
+      </line>
+      <line name="Feature"><field name="Designation">40 pages/mn A4-A3</field></line>
+      <line name="Feature"><field name="Designation">PCL5e - 16Mo extensible</field></line>
+      <line name="Feature"><field name="Designation">Standard 2*500+50</field></line>
+      <line name="Option">
+        <field name="Designation">Recto-verso</field>
+        <field name="Reference">004402</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">4000,00</field>
+        <field name="Amount">4000,00</field>
+      </line>
+      <line name="Option">
+        <field name="Designation">Bac 2500 pages</field>
+        <field name="Reference">004501</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">7900,00</field>
+        <field name="Amount">7900,00</field>
+      </line>
+      <line name="Option">
+        <field name="Designation">Carte Ethernet</field>
+        <field name="Reference">004161</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">2050,00</field>
+        <field name="Amount">2050,00</field>
+      </line>
+      <line name="Total">
+        <field name="Amount">33950,00 </field>
+      </line>
+      <line name="Product">
+        <field name="Designation">Network printer 17 IBM</field>
+        <field name="Reference">431702</field>
+        <field name="Quantity">2</field>
+        <field name="Unit Price">8400,00</field>
+        <field name="Amount">16800,00</field>
+      </line>
+      <line name="Feature"><field name="Designation">17 pages/mn 600 dpi</field></line>
+      <line name="Feature"><field name="Designation">PCL5e - 4Mo</field></line>
+      <line name="Feature"><field name="Designation">Standard 250+100</field></line>
+      <line name="Feature"><field name="Designation">Recto-verso</field></line>
+      <line name="Option">
+        <field name="Designation">Bac 500 pages</field>
+        <field name="Reference">004501</field>
+        <field name="Quantity">4</field>
+        <field name="Unit Price">2200,00</field>
+        <field name="Amount">8800,00</field>
+      </line>
+      <line name="Option">
+        <field name="Designation">Carte Ethernet</field>
+        <field name="Reference">004161</field>
+        <field name="Quantity">2</field>
+        <field name="Unit Price">2050,00</field>
+        <field name="Amount">4100,00</field>
+      </line>
+      <line name="Total">
+        <field name="Amount">29700,00 </field>
+      </line>
+      <line name="Product">
+        <field name="Designation">Network printer 17 IBM</field>
+        <field name="Reference">431702</field>
+        <field name="Quantity">2</field>
+        <field name="Unit Price">8400,00</field>
+        <field name="Amount">16800,00</field>
+      </line>
+      <line name="Feature"><field name="Designation">17 pages/mn 600 dpi</field></line>
+      <line name="Feature"><field name="Designation">PCL5e - 4Mo</field></line>
+      <line name="Feature"><field name="Designation">Standard 250+100</field></line>
+      <line name="Feature"><field name="Designation">Recto-verso</field></line>
+      <line name="Option">
+        <field name="Designation">Bac 500 pages</field>
+        <field name="Reference">004501</field>
+        <field name="Quantity">4</field>
+        <field name="Unit Price">2200,00</field>
+        <field name="Amount">8800,00</field>
+      </line>
+      <line name="Option">
+        <field name="Designation">Carte Ethernet</field>
+        <field name="Reference">004161</field>
+        <field name="Quantity">2</field>
+        <field name="Unit Price">2050,00</field>
+        <field name="Amount">4100,00</field>
+      </line>
+      <line name="Total">
+        <field name="Amount">29700,00 </field>
+      </line>
+      <line name="Product">
+        <field name="Designation">Infoprint 20 IBM</field>
+        <field name="Reference">432002</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">11500,00</field>
+        <field name="Amount">11500,00</field>
+      </line>
+      <line name="Feature"><field name="Designation">20 pages/mn A4-A3</field></line>
+      <line name="Feature"><field name="Designation">PCL5e - 8Mo</field></line>
+      <line name="Feature"><field name="Designation">Standard 500+150</field></line>
+      <line name="Option">
+        <field name="Designation">Recto-verso</field>
+        <field name="Reference">004402</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">4000,00</field>
+        <field name="Amount">4000,00</field>
+      </line>
+      <line name="Option">
+        <field name="Designation">Bac 500 pages</field>
+        <field name="Reference">004501</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">2500,00</field>
+        <field name="Amount">2500,00</field>
+      </line>
+      <line name="Option">
+        <field name="Designation">Carte Ethernet</field>
+        <field name="Reference">004161</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">2050,00</field>
+        <field name="Amount">2050,00</field>
+      </line>
+      <line name="Total">
+        <field name="Amount">20050,00</field>
+      </line>
+      <line name="Product">
+        <field name="Designation">Infoprint 32 IBM</field>
+        <field name="Reference">433202</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">18000,00</field>
+        <field name="Amount">18000,00</field>
+      </line>
+      <line name="Feature"><field name="Designation">20 pages/mn A4-A3</field></line>
+      <line name="Feature"><field name="Designation">PCL5e - 8Mo extensible</field></line>
+      <line name="Feature"><field name="Designation">Standard 2*500+50</field></line>
+      <line name="Feature"><field name="Designation">Parallèle</field></line>
+      <line name="Option">
+        <field name="Designation">Recto-verso</field>
+        <field name="Reference">004402</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">4000,00</field>
+        <field name="Amount">4000,00</field>
+      </line>
+      <line name="Option">
+        <field name="Designation">Bac 2500 pages</field>
+        <field name="Reference">004520</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">7900,00</field>
+        <field name="Amount">7900,00</field>
+      </line>
+      <line name="Option">
+        <field name="Designation">Carte Ethernet</field>
+        <field name="Reference">004161</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">2050,00</field>
+        <field name="Amount">2050,00</field>
+      </line>
+      <line name="Total">
+        <field name="Amount">31950,00 </field>
+      </line>
+      <line name="Product">
+        <field name="Designation">Infoprint 32 IBM</field>
+        <field name="Reference">433202</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">18000,00</field>
+        <field name="Amount">18000,00</field>
+      </line>
+      <line name="Feature"><field name="Designation">20 pages/mn A4-A3</field></line>
+      <line name="Feature"><field name="Designation">PCL5e - 8Mo extensible</field></line>
+      <line name="Feature"><field name="Designation">Standard 2*500+50</field></line>
+      <line name="Feature"><field name="Designation">Parallèle</field></line>
+      <line name="Option">
+        <field name="Designation">Recto-verso</field>
+        <field name="Reference">004402</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">4000,00</field>
+        <field name="Amount">4000,00</field>
+      </line>
+      <line name="Option">
+        <field name="Designation">Bac 2500 pages</field>
+        <field name="Reference">004520</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">7900,00</field>
+        <field name="Amount">7900,00</field>
+      </line>
+      <line name="Option">
+        <field name="Designation">Carte Ethernet</field>
+        <field name="Reference">004161</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">2050,00</field>
+        <field name="Amount">2050,00</field>
+      </line>
+      <line name="Total">
+        <field name="Amount">31950,00 </field>
+      </line>
+      <line name="Product">
+        <field name="Designation">Infoprint 40 IBM</field>
+        <field name="Reference">433205</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">20000,00</field>
+        <field name="Amount">20000,00</field>
+      </line>
+      <line name="Feature"><field name="Designation">40 pages/mn A4-A3</field></line>
+      <line name="Feature"><field name="Designation">PCL5e - 16Mo extensible</field></line>
+      <line name="Feature"><field name="Designation">Standard 2*500+50</field></line>
+      <line name="Option">
+        <field name="Designation">Recto-verso</field>
+        <field name="Reference">004402</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">4000,00</field>
+        <field name="Amount">4000,00</field>
+      </line>
+      <line name="Option">
+        <field name="Designation">Bac 2500 pages</field>
+        <field name="Reference">004501</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">7900,00</field>
+        <field name="Amount">7900,00</field>
+      </line>
+      <line name="Option">
+        <field name="Designation">Carte Ethernet</field>
+        <field name="Reference">004161</field>
+        <field name="Quantity">1</field>
+        <field name="Unit Price">2050,00</field>
+        <field name="Amount">2050,00</field>
+      </line>
+      <line name="Total">
+        <field name="Amount">33950,00 </field>
+      </line>
+      <line name="Product">
+        <field name="Designation">Network printer 17 IBM</field>
+        <field name="Reference">431702</field>
+        <field name="Quantity">2</field>
+        <field name="Unit Price">8400,00</field>
+        <field name="Amount">16800,00</field>
+      </line>
+      <line name="Feature"><field name="Designation">17 pages/mn 600 dpi</field></line>
+      <line name="Feature"><field name="Designation">PCL5e - 4Mo</field></line>
+      <line name="Feature"><field name="Designation">Standard 250+100</field></line>
+      <line name="Feature"><field name="Designation">Recto-verso</field></line>
+      <line name="Option">
+        <field name="Designation">Bac 500 pages</field>
+        <field name="Reference">004501</field>
+        <field name="Quantity">4</field>
+        <field name="Unit Price">2200,00</field>
+        <field name="Amount">8800,00</field>
+      </line>
+      <line name="Option">
+        <field name="Designation">Carte Ethernet</field>
+        <field name="Reference">004161</field>
+        <field name="Quantity">2</field>
+        <field name="Unit Price">2050,00</field>
+        <field name="Amount">4100,00</field>
+      </line>
+      <line name="Total">
+        <field name="Amount">29700,00 </field>
+      </line>
+      <line name="Product">
+        <field name="Designation">Network printer 17 IBM</field>
+        <field name="Reference">431702</field>
+        <field name="Quantity">2</field>
+        <field name="Unit Price">8400,00</field>
+        <field name="Amount">16800,00</field>
+      </line>
+      <line name="Feature"><field name="Designation">17 pages/mn 600 dpi</field></line>
+      <line name="Feature"><field name="Designation">PCL5e - 4Mo</field></line>
+      <line name="Feature"><field name="Designation">Standard 250+100</field></line>
+      <line name="Feature"><field name="Designation">Recto-verso</field></line>
+      <line name="Option">
+        <field name="Designation">Bac 500 pages</field>
+        <field name="Reference">004501</field>
+        <field name="Quantity">4</field>
+        <field name="Unit Price">2200,00</field>
+        <field name="Amount">8800,00</field>
+      </line>
+      <line name="Option">
+        <field name="Designation">Carte Ethernet</field>
+        <field name="Reference">004161</field>
+        <field name="Quantity">2</field>
+        <field name="Unit Price">2050,00</field>
+        <field name="Amount">4100,00</field>
+      </line>
+      <line name="Total">
+        <field name="Amount">29700,00 </field>
+      </line>
+    </group>
+    <field name="Legal_info">SIRET 123456789  Code APE 4455 RCS Lille n° 98776543221</field>
+    <field name="Siret">123456789</field>
+    <field name="APE">4455</field>
+    <field name="RCS">Lille n° 98776543221</field>
+    <field name="Payment_info">Paiement par traite acceptée au : 1er Novembre 2019</field>
+  </page>
+</doc>
