@@ -1,5 +1,7 @@
 # STDCONVERT
-STDCONVERT is a Mapping Connect projet made to convert standard Mapping pivot XML file to standard Mapping XML for Designer.
+STDCONVERT est un projet Mapping Connect conçu pour convertir les fichiers XML "pivots" en fichiers XML "draw" dédiés au Designer Mapping.
+
+Nom du Format Connect : XML4DESIGN
 
 Paramètres obligatoires :
 - DB.INPUT_XML (fichier xml de données)
