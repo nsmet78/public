@@ -15,6 +15,7 @@ Paramètres facultatifs :
 
 
 ## Exemple de fichier XML de données (facture)
+```xml
 <data version="1.0" xmlns="http://mappingsuite.com/designer">
   <field id="inv_num">12456</field>
   <field id="cust_num">Durand</field>
@@ -39,9 +40,10 @@ Paramètres facultatifs :
     </item>
   </list>
 </data>
-
+```
 
 ## Exemple de fichier XML de paramétrage
+```xml
 <param version="1.0" data-version="1.0" xmlns="http://mappingsuite.com/designer">
   <field id="inv_num"/>
   <list id="products">
@@ -52,3 +54,4 @@ Paramètres facultatifs :
     </items>
   </list>
 </param>
+```
