@@ -8,6 +8,7 @@ Paramètres obligatoires :
 - DB.PARAM_XML (fichier xml de paramétrage)
 - DB.OUTPUT_XML (fichier xml "draw" pour le Designer)
 - DB.MAPPING_DATASTREAM=XML (paramètre technique)
+- DB.MAPPING_WIDTHPAGE=9999
 
 Paramètres facultatifs :
 - DB.nb-decimal (nombre de chiffres après la virgule)
