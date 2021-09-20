@@ -6,4 +6,4 @@ Fonctionnalités :
   - Formatage des dates avec @date-in et @date-out (cf. documentation/specs du convertisseur XML pivot)
   - Modification de la casse d'un champ texte avec @case (cf. documentation/specs du convertisseur XML pivot)
   - Découpage d'un champ de "group" en plusieurs lignes avec @split et @indentation (cf. image @split.png)
-  - Fusion de la première ligne d'une liste avec son élément parent grâce à @merge-into (cf. image @)
+  - Fusion de la première ligne d'une liste avec son élément parent grâce à @merge-into (cf. image @merge-into.png)
