@@ -21,8 +21,8 @@
 
 	<!-- Key declaration -->
 	<!-- Replace "origin-list", "field-id_key-1" and "field-id_key-2" of example with the values as above -->
-	<!-- Example: <xsl:key name="grouping-key" match="list[@id='products']/item" use="concat(../../node(),'|',field[@id='supplier-id'],'|')"/> -->
-	<xsl:key name="grouping-key" match="list[@id='origin-list']/item" use="concat(../../node(),'|',field[@id='field-id_key-1'],'|','field[@id='field-id_key-2']')"/>
+	<!-- Example: <xsl:key name="grouping-key" match="list[@id='products']/item" use="concat(generate-id(../..),'|',field[@id='supplier-id'],'|')"/> -->
+	<xsl:key name="grouping-key" match="list[@id='origin-list']/item" use="concat(generate-id(../..),'|',field[@id='field-id_key-1'],'|','field[@id='field-id_key-2']')"/>
 
 
 	<!-- fields to add in the grouping level -->
@@ -77,13 +77,13 @@
 	<xsl:template match="list[@id=$list]">
 		<list>
 			<xsl:attribute name="id"><xsl:value-of select="$grouping-list"/></xsl:attribute>
-			<xsl:for-each select="item[not(@type)][count(. | key('grouping-key',concat(../../node(),'|',field[@id=$grouping-key1],'|',field[@id=$grouping-key2]))[1]) = 1]">
+			<xsl:for-each select="item[not(@type)][count(. | key('grouping-key',concat(generate-id(../..),'|',field[@id=$grouping-key1],'|',field[@id=$grouping-key2]))[1]) = 1]">
 				<xsl:sort select="field[@id=$sort-key1]" order="{$sort-key1-order}" data-type="{$sort-key1-type}" />
 				<xsl:sort select="field[@id=$sort-key2]" order="{$sort-key2-order}" data-type="{$sort-key2-type}" />
 				<xsl:sort select="field[@id=$sort-key3]" order="{$sort-key3-order}" data-type="{$sort-key3-type}" />
 				<xsl:sort select="field[@id=$sort-key4]" order="{$sort-key4-order}" data-type="{$sort-key4-type}" />
         <xsl:sort select="field[@id=$sort-key5]" order="{$sort-key5-order}" data-type="{$sort-key5-type}" />
-				<xsl:variable name="current-grouping-key" select="concat(../../node(),'|',field[@id=$grouping-key1],'|',field[@id=$grouping-key2])" />
+				<xsl:variable name="current-grouping-key" select="concat(generate-id(../..),'|',field[@id=$grouping-key1],'|',field[@id=$grouping-key2])" />
 				<xsl:variable name="current-item" select="key('grouping-key',$current-grouping-key)" />
 				<item>
 					<!-- key1 field and its value -->
