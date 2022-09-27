@@ -1,5 +1,5 @@
 # XML4DESIGN
-XML4DESIGN est un projet Mapping Connect conçu pour convertir les fichiers XML "pivots" en fichiers XML "draw" dédiés au Designer Mapping.
+XML4DESIGN est un projet Mapping Connect conçu pour convertir les fichiers XML "Pivot" en fichiers XML "Designer" dédiés au Designer Mapping.
 
 Nom du Format Connect : XML4DESIGN
 
