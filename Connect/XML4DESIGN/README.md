@@ -7,14 +7,14 @@ Paramètres obligatoires :
 - DB.INPUT_XML (fichier xml de données)
 - DB.PARAM_XML (fichier xml de paramétrage)
 - DB.OUTPUT_XML (fichier xml "draw" pour le Designer)
-- DB.MAPPING_DATASTREAM=XML (paramètre technique inutile à partir de la version 1.44)
-- DB.MAPPING_WIDTHPAGE=9999 (inutile à partir de la version 1.44)
+
 
 Paramètres facultatifs :
 - DB.nb-decimal (nombre de chiffres après la virgule)
 - DB.decimal-separator (séparateur de décimales)
 - DB.thousands-separator (séparateur de milliers)
 - DB.culture (fr-FR , en-US , en-UK)
+- DB.comment (true|false permettant de désactiver l'écriture des commentaires <!-- xxxx -->)
 
 
 ## Exemple de fichier XML de données (facture)
