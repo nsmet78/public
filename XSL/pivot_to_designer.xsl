@@ -14,17 +14,22 @@
 
   <!-- Les noeuds "doc" deviennent "page" et leur attribut "type" deviennent "name" -->
   <!-- Si absence de l'attribut @type, nommage avec la valeur "normal" -->
-  <xsl:template match="doc">
-    <page>
-        <xsl:if test="@type">
-          <xsl:attribute name="name"><xsl:value-of select="@type"/></xsl:attribute>
-        </xsl:if>
-        <xsl:if test="not(@type)">
-          <xsl:attribute name="name">normal</xsl:attribute>
-        </xsl:if>
-      <xsl:apply-templates select="node()"/>
-    </page>
-  </xsl:template>
+ <xsl:template match="/*/doc">
+		<page>
+			<xsl:attribute name="name">
+				<xsl:if test="@type != ''">
+					<xsl:value-of select="@type"/>
+				</xsl:if>
+				<xsl:if test="@type = ''">
+					<xsl:value-of select="'DEFAUT'"/>
+				</xsl:if>
+				<xsl:if test="not(@type)">
+					<xsl:value-of select="'DEFAUT'"/>
+				</xsl:if>
+			</xsl:attribute>
+			<xsl:apply-templates select="node()"/>
+		</page>
+	</xsl:template>
 
 
   <!-- Les noeuds "field" sont conservés leur attribut "id" devient "name" -->
