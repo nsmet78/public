@@ -22,7 +22,7 @@
 	<!-- Key declaration -->
 	<!-- Replace "origin-list", "field-id_key-1" and "field-id_key-2" of example with the values as above -->
 	<!-- Example: <xsl:key name="grouping-key" match="list[@id='products']/item" use="concat(generate-id(../..),'|',field[@id='supplier-id'],'|')"/> -->
-	<xsl:key name="grouping-key" match="list[@id='origin-list']/item" use="concat(generate-id(../..),'|',field[@id='field-id_key-1'],'|','field[@id='field-id_key-2']')"/>
+	<xsl:key name="grouping-key" match="list[@id='origin-list']/item" use="concat(generate-id(../..),'|',field[@id='field-id_key-1'],'|',field[@id='field-id_key-2'])"/>
 
 
 	<!-- fields to add in the grouping level -->
@@ -126,7 +126,7 @@
 
 					<!-- totals -->
 					<field>
-						<xsl:attribute name="id">count</xsl:attribute>
+						<xsl:attribute name="id"><xsl:value-of select="'count'"/></xsl:attribute>
 						<xsl:value-of select="count($current-item)"/>
 					</field>
 					<field>
