@@ -130,46 +130,46 @@
 						<xsl:value-of select="count($current-item)"/>
 					</field>
 					<field>
-						<xsl:attribute name="id">sum_<xsl:value-of select="$sum1"/></xsl:attribute>
+						<xsl:attribute name="id"><xsl:value-of select="'sum_'"/><xsl:value-of select="$sum1"/></xsl:attribute>
 						<xsl:value-of select="sum($current-item/field[@id=$sum1])"/>
 					</field>
 					<field>
-						<xsl:attribute name="id">sum_<xsl:value-of select="$sum2"/></xsl:attribute>
+						<xsl:attribute name="id"><xsl:value-of select="'sum_'"/><xsl:value-of select="$sum2"/></xsl:attribute>
 						<xsl:value-of select="sum($current-item/field[@id=$sum2])"/>
 					</field>
 					<field>
-						<xsl:attribute name="id">sum_<xsl:value-of select="$sum3"/></xsl:attribute>
+						<xsl:attribute name="id"><xsl:value-of select="'sum_'"/><xsl:value-of select="$sum3"/></xsl:attribute>
 						<xsl:value-of select="sum($current-item/field[@id=$sum3])"/>
 					</field>
 					<field>
-						<xsl:attribute name="id">sum_<xsl:value-of select="$sum4"/></xsl:attribute>
+						<xsl:attribute name="id"><xsl:value-of select="'sum_'"/><xsl:value-of select="$sum4"/></xsl:attribute>
 						<xsl:value-of select="sum($current-item/field[@id=$sum4])"/>
 					</field>
 					<field>
-						<xsl:attribute name="id">sum_<xsl:value-of select="$sum5"/></xsl:attribute>
+						<xsl:attribute name="id"><xsl:value-of select="'sum_'"/><xsl:value-of select="$sum5"/></xsl:attribute>
 						<xsl:value-of select="sum($current-item/field[@id=$sum5])"/>
 					</field>
 
 					<!-- totals (from sublist) -->
 
 					<field>
-						<xsl:attribute name="id">sum_<xsl:value-of select="$sum11_sublistid"/>_<xsl:value-of select="$sum11"/></xsl:attribute>
+						<xsl:attribute name="id"><xsl:value-of select="'sum_'"/><xsl:value-of select="$sum11_sublistid"/><xsl:value-of select="'_'"/><xsl:value-of select="$sum11"/></xsl:attribute>
 						<xsl:value-of select="sum($current-item/list[@id=$sum11_sublistid]/item/field[@id=$sum11])"/>
 					</field>
 					<field>
-						<xsl:attribute name="id">sum_<xsl:value-of select="$sum12_sublistid"/>_<xsl:value-of select="$sum12"/></xsl:attribute>
+						<xsl:attribute name="id"><xsl:value-of select="'sum_'"/><xsl:value-of select="$sum12_sublistid"/><xsl:value-of select="'_'"/><xsl:value-of select="$sum12"/></xsl:attribute>
 						<xsl:value-of select="sum($current-item/list[@id=$sum12_sublistid]/item/field[@id=$sum12])"/>
 					</field>
 					<field>
-						<xsl:attribute name="id">sum_<xsl:value-of select="$sum13_sublistid"/>_<xsl:value-of select="$sum13"/></xsl:attribute>
+						<xsl:attribute name="id"><xsl:value-of select="'sum_'"/><xsl:value-of select="$sum13_sublistid"/><xsl:value-of select="'_'"/><xsl:value-of select="$sum13"/></xsl:attribute>
 						<xsl:value-of select="sum($current-item/list[@id=$sum13_sublistid]/item/field[@id=$sum13])"/>
 					</field>
 					<field>
-						<xsl:attribute name="id">sum_<xsl:value-of select="$sum14_sublistid"/>_<xsl:value-of select="$sum14"/></xsl:attribute>
+						<xsl:attribute name="id"><xsl:value-of select="'sum_'"/><xsl:value-of select="$sum14_sublistid"/><xsl:value-of select="'_'"/><xsl:value-of select="$sum14"/></xsl:attribute>
 						<xsl:value-of select="sum($current-item/list[@id=$sum14_sublistid]/item/field[@id=$sum14])"/>
 					</field>
 					<field>
-						<xsl:attribute name="id">sum_<xsl:value-of select="$sum15_sublistid"/>_<xsl:value-of select="$sum15"/></xsl:attribute>
+						<xsl:attribute name="id"><xsl:value-of select="'sum_'"/><xsl:value-of select="$sum15_sublistid"/><xsl:value-of select="'_'"/><xsl:value-of select="$sum15"/></xsl:attribute>
 						<xsl:value-of select="sum($current-item/list[@id=$sum15_sublistid]/item/field[@id=$sum15])"/>
 					</field>
 
