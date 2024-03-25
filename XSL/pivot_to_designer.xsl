@@ -7,7 +7,8 @@
   <!-- Le noeud racine devient "doc" --> 
   <xsl:template match="/*">
     <doc>
-      <xsl:apply-templates select="node()"/>
+	<!-- continuer sur les éléments <doc> uniquement afin de ne pas récupérer les <field> globaux à ce stade --> 
+      <xsl:apply-templates select="doc"/>
     </doc>
   </xsl:template>
 
@@ -16,6 +17,7 @@
   <!-- Si absence de l'attribut @type, nommage avec la valeur "normal" -->
  <xsl:template match="/*/doc">
 		<page>
+			<xsl:apply-templates select="/*/field"/>
 			<xsl:attribute name="name">
 				<xsl:if test="@type != ''">
 					<xsl:value-of select="@type"/>
@@ -34,9 +36,21 @@
 
   <!-- Les noeuds "field" sont conservés leur attribut "id" devient "name" -->
   <!-- Si l'attribut @title est présent on le conserve --> 
-  <xsl:template match="field">
+  <xsl:template match="doc/field|item/field">
     <field>
       <xsl:attribute name="name"><xsl:value-of select="@id"/></xsl:attribute> 
+      <xsl:if test="@title">
+          <xsl:attribute name="title"><xsl:value-of select="@title"/></xsl:attribute>
+      </xsl:if>
+      <xsl:apply-templates select="node()"/>
+    </field>
+  </xsl:template>
+
+	
+  <!-- Les noeuds "field" globaux sont ajoutés à chaque document <doc> et préfixés par "GLOBAL_"  -->
+  <xsl:template match="/*/field">
+    <field>
+      <xsl:attribute name="name"><xsl:value-of select="'GLOBAL_'"/><xsl:value-of select="@id"/></xsl:attribute> 
       <xsl:if test="@title">
           <xsl:attribute name="title"><xsl:value-of select="@title"/></xsl:attribute>
       </xsl:if>
