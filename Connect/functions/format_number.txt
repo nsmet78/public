@@ -1,0 +1,487 @@
+CreateFunction("format_number")
+{
+	# Tous les paramètres sont sous la forme de chaines de caractères
+	# input_value : valeur avant formatage. Ne doit pas comporter de séparateur de milliers. Le séparateur de décimales doit être le point ou la virgule
+	# output_string : valeur après formatage
+	# nb_decimal : nombre de décimales désirées. Laisser vide pour conserver toutes les chiffres après la virgule. Pour min et max, séparer les 2 valeurs par une virgule (exemple : 2,4 pour 2 décimales minimum et 4 maximum)
+	# nb_integer : nombre de chiffre minimum dans la partie entière (avant la virgule). La valeur est complétée avec des zéros non significatifs
+	# decimal_separator : caractères à utiliser pour séparer la partie entière de la partie décimale. "__NONE__" pour supprimer le séparateur
+	# thousands_separator : caractères à utiliser pour séparer les groupes de millers dans la partie entière. 
+	# fixlength : création d'une chaine de caractères de longueur fixe (la valeur est alors complétée par des espaces)
+	# align : en cas de fixlength, permet d'aligner la valeur numérique à droite (right) , à gauche (left) ou centrée (center)
+	AddParam("input_value", PARAM_STRING, "")
+	AddParam("output_string", PARAM_STRING, "")
+	AddParam("nb_decimal", PARAM_STRING, "")
+	AddParam("nb_integer", PARAM_STRING, "")
+	AddParam("decimal_separator", PARAM_STRING, "")
+	AddParam("thousands_separator", PARAM_STRING, "")
+	AddParam("fixlength", PARAM_STRING, "")
+	AddParam("align", PARAM_STRING, "")
+	DeclareString("tmp_str1","",999)
+	DeclareString("tmp_str2","",999)
+	DeclareString("tmp_str3","",999)
+	DeclareString("tmp_str_left","",999)
+	DeclareString("tmp_str_right","",999)
+	DeclareString("tmp_str_int","",999)
+	DeclareString("tmp_str_dec","",999)
+	DeclareInt("tmp_int1","",5)
+	DeclareInt("tmp_int2","",5)
+	DeclareInt("tmp_int3","",5)
+	DeclareInt("tmp_int4","",5)
+	DeclareInt("tmp_strlen_full","",2)
+	DeclareInt("tmp_strlen_left","",2)
+	DeclareString("nb_decimal_min","",2)
+	DeclareString("nb_decimal_max","",2)
+	DeclareFloat("tmp_float1","",20, 20)
+	DeclareInt("tmp_long1","",20)
+	DeclareInt("tmp_long2","",20)
+	DeclareInt("tmp_long3","",20)
+	DeclareString("is_negative","",5)
+
+
+	Source()
+	{
+		output_string = input_value 
+		IfChar(input_value != "#error" )
+		{
+			is_negative = "false" 
+			tmp_int1 = FindSubstring ( input_value , "-" , 0 ) 
+			IfInt(tmp_int1 >= 0 )
+			{
+				# La valeur est négative, on la passe en positif afin de faciliter sa manipulation sous forme de string
+				#@name 
+				#@desc 
+				is_negative = "true" 
+				output_string = Replace ( input_value , "-" , "" ) 
+			}
+			# Gestion nombre de décimales min et max
+			#@name 
+			#@desc 
+			nb_decimal_min = "" 
+			nb_decimal_max = "" 
+			IfChar(( nb_decimal != "" ) And ( nb_decimal != "_" ) )
+			{
+				tmp_int1 = FindSubstring ( nb_decimal , "," , 0 ) 
+				IfInt(tmp_int1 >= 0 )
+				{
+					# Besoin de gérer un nombre min et max de décimales
+					# Récupération du nombre mini
+					#@name 
+					#@desc 
+					nb_decimal_min = Mid ( nb_decimal , 0 , tmp_int1 ) 
+					# Récupération du nombre maxi                                                                                                                                                                                                                                 
+					tmp_int1 = tmp_int1 + 1 
+					nb_decimal_max = Mid ( nb_decimal , tmp_int1 , 9 ) 
+				}
+				else
+				{
+					nb_decimal_min = nb_decimal 
+					nb_decimal_max = nb_decimal 
+				}
+			}
+			# Si la chaine entrée contient une vigurle comme séparateur, on force le point (standard international) car le reste de l'algo se base dessus...
+			#@name 
+			#@desc 
+			output_string = Replace ( output_string , "," , "." ) 
+			output_string = Replace ( output_string , " " , "" ) 
+			output_string = Trim ( output_string ) 
+			# Nettoyer la valeur pour récupérer uniquement la partie numérique                                                                                                                                                                                                                                 
+			tmp_float1 = output_string 
+			output_string = tmp_float1 
+			#Step 0 : Suppression de tous les zéros non significatifs                                                                                                                                                                                                                                 
+			# Côté décimal                                                                                                                                                                                                                                 
+			IfChar(( nb_decimal = "" ) And ( nb_decimal != "_" ) )
+			{
+				tmp_int1 = FindSubstring ( output_string , "." , 0 ) 
+				IfInt(tmp_int1 > 0 )
+				{
+					tmp_int2 = GetLength ( output_string ) 
+					tmp_int2 = tmp_int2 - 1 
+					WhileInt(tmp_int2 >= tmp_int1 )
+					{
+						True()
+						{
+							tmp_str1 = Mid ( output_string , tmp_int2 , 1 ) 
+							IfChar(( tmp_str1 = "0" ) Or ( tmp_str1 = "." ) )
+							{
+								tmp_int2 = tmp_int2 - 1 
+							}
+							else
+							{
+								# Caractère significatif trouvé : sortir de la boucle
+								#@name 
+								#@desc 
+								tmp_int1 = 9999 
+							}
+						}
+						EnterLoop() {}
+						ExitLoop() {}
+						NoLoop() {}
+					}
+					tmp_int2 = tmp_int2 + 1 
+					output_string = Mid ( output_string , 0 , tmp_int2 ) 
+				}
+			}
+			# Côté entier
+			#@name 
+			#@desc 
+			tmp_int1 = GetLength ( output_string ) 
+			tmp_int2 = 0 
+			WhileInt(tmp_int2 <= tmp_int1 )
+			{
+				True()
+				{
+					tmp_str1 = Mid ( output_string , tmp_int2 , 1 ) 
+					IfChar(tmp_str1 = "0" )
+					{
+						tmp_int2 = tmp_int2 + 1 
+					}
+					else
+					{
+						# Caractère significatif trouvé : sortir de la boucle
+						#@name 
+						#@desc 
+						tmp_int1 = - 1 
+					}
+				}
+				EnterLoop() {}
+				ExitLoop() {}
+				NoLoop() {}
+			}
+			output_string = Mid ( output_string , tmp_int2 , 999 ) 
+			output_string = Trim ( output_string ) 
+			# Si le 1er caractère est le séparateur de décimales, il faut ajouter un 0 devant                                                                                                                                                                                                                                 
+			tmp_str1 = Mid ( output_string , 0 , 1 ) 
+			IfChar(tmp_str1 = "." )
+			{
+				output_string = "0" + output_string 
+			}
+			# Step 1 : Prise en compte du nombre de décimales désiré
+			#@name 
+			#@desc 
+			IfChar(nb_decimal_max != "" )
+			{
+				# séparation miliers = décimales
+				#@name 
+				#@desc 
+				tmp_int1 = FindSubstring ( output_string , "." , 0 ) 
+				IfInt(tmp_int1 > 0 )
+				{
+					# Séparateur de décimales trouvé : il faut séparer la partie entière de la partie décimales
+					#@name 
+					#@desc 
+					tmp_str_int = Mid ( output_string , 0 , tmp_int1 ) 
+					tmp_int1 += 1 
+					tmp_str_dec = Mid ( output_string , tmp_int1 , 999 ) 
+					# Récupération du chiffre "suivant" pour déterminer comment faire l'arrondi (cas de 0 à 4 ou de 5 à 9)                                            
+					tmp_int1 = nb_decimal_max 
+					tmp_int2 = Mid ( tmp_str_dec , tmp_int1 , 1 ) 
+					tmp_str_dec = Mid ( tmp_str_dec , 0 , tmp_int1 ) 
+					IfInt(tmp_int2 >= 5 )
+					{
+						tmp_long1 = tmp_str_dec 
+						tmp_long1 += 1 
+						tmp_str1 = tmp_long1 
+						tmp_int3 = GetLength ( tmp_str1 ) 
+						IfInt(tmp_int3 > tmp_int1 )
+						{
+							# Il va falloir incrémenter la partie entière de 1
+							#@name 
+							#@desc 
+							tmp_long2 = tmp_str_int 
+							IfInt(tmp_long2 >= 0 )
+							{
+								tmp_long2 += 1 
+							}
+							else
+							{
+								tmp_long2 = tmp_long2 - 1 
+							}
+							tmp_str_int = tmp_long2 
+							# Et ne pas récupérer le premier chiffre de la partie décimale                                          
+							tmp_str1 = Mid ( tmp_str1 , 1 , nb_decimal_max ) 
+						}
+						tmp_str_dec = tmp_str1 
+					}
+				}
+				else
+				{
+					# Pas de séparateur de décimales : il s'agit d'un entier donc pas de modification
+					#@name 
+					#@desc 
+					tmp_str_int = output_string 
+					tmp_str_dec = "" 
+				}
+				IfChar(tmp_str_dec != "" )
+				{
+					output_string = tmp_str_int + "." + tmp_str_dec 
+				}
+				else
+				{
+					output_string = tmp_str_int 
+				}
+				#tmp_str1 = "%." + nb_decimal_max + "f"    
+				#tmp_float1 = output_string    
+				#output_string = Format ( tmp_float1 , tmp_str1 )    
+				#@name 
+				#@desc 
+				IfChar(nb_decimal_min != nb_decimal_max )
+				{
+					tmp_int1 = nb_decimal_min 
+					#Suppression des éventuels zeros non significatifs                                                                                                                                                                                                                                 
+					tmp_int2 = FindSubstring ( output_string , "." , 0 ) 
+					IfInt(tmp_int2 >= 0 )
+					{
+						tmp_str1 = Mid ( output_string , 0 , tmp_int2 ) 
+						tmp_int2 += 1 
+						tmp_str2 = Mid ( output_string , tmp_int2 , 99 ) 
+						tmp_int3 = GetLength ( tmp_str2 ) 
+						WhileInt(tmp_int3 > tmp_int1 )
+						{
+							True()
+							{
+								tmp_int3 = tmp_int3 - 1 
+								tmp_str3 = Mid ( tmp_str2 , tmp_int3 , 1 ) 
+								IfChar(tmp_str3 = "0" )
+								{
+									tmp_str2 = Mid ( tmp_str2 , 0 , tmp_int3 ) 
+								}
+								else
+								{
+									# Il n'y a plus de zero non significatifs : sortir de la boucle
+									#@name 
+									#@desc 
+									tmp_int1 = 9999 
+								}
+							}
+							EnterLoop() {}
+							ExitLoop() {}
+							NoLoop() {}
+						}
+						output_string = tmp_str1 
+						tmp_int1 = GetLength ( tmp_str2 ) 
+						IfInt(tmp_int1 > 0 )
+						{
+							output_string = output_string + "." + tmp_str2 
+						}
+					}
+				}
+			}
+			# Step 2 : Prise en compte du nombre de chiffres mini dans la partie entière. Permet de compléter avec des 0 non significatifs, mais pas de supprimer des chiffres significatifs
+			#@name 
+			#@desc 
+			IfChar(( nb_integer != "" ) And ( nb_integer != "_" ) )
+			{
+				tmp_int1 = FindSubstring ( output_string , "." , 0 ) 
+				IfInt(tmp_int1 > 0 )
+				{
+					# Séparateur de décimales trouvé : il faut séparer la partie entière de la partie décimales
+					#@name 
+					#@desc 
+					tmp_str_int = Mid ( output_string , 0 , tmp_int1 ) 
+					tmp_str_dec = Mid ( output_string , tmp_int1 , 999 ) 
+				}
+				else
+				{
+					# Pas de séparateur de décimales : il s'agit d'un entier
+					#@name 
+					#@desc 
+					tmp_str_int = output_string 
+					tmp_str_dec = "" 
+				}
+				tmp_int1 = GetLength ( tmp_str_int ) 
+				tmp_int2 = nb_integer 
+				IfInt(tmp_int1 < tmp_int2 )
+				{
+					# Il faut ajouter des zeros
+					#@name 
+					#@desc 
+					tmp_int3 = tmp_int2 - tmp_int1 
+					WhileInt(tmp_int3 > 0 )
+					{
+						True()
+						{
+							tmp_str_int = "0" + tmp_str_int 
+							tmp_int3 = tmp_int3 - 1 
+						}
+						EnterLoop() {}
+						ExitLoop() {}
+						NoLoop() {}
+					}
+				}
+				output_string = tmp_str_int + tmp_str_dec 
+			}
+			# Step 3 : Ajout du séparateur de milliers sous forme de "|" (temporairement avant le remplacement afin de ne pas entrer en collision avec le séparateur de décimales)
+			#@name 
+			#@desc 
+			IfChar(thousands_separator != "" )
+			{
+				IfChar(thousands_separator = "&apos;" )
+				{
+					thousands_separator = "'" 
+				}
+				IfChar(thousands_separator = "&quot;" )
+				{
+					thousands_separator = "\"" 
+				}
+				tmp_int1 = FindSubstring ( output_string , "." , 0 ) 
+				IfInt(tmp_int1 > 0 )
+				{
+					# Séparateur de décimales trouvé : il faut séparer la partie entière de la partie décimales
+					#@name 
+					#@desc 
+					tmp_str_int = Mid ( output_string , 0 , tmp_int1 ) 
+					tmp_str_dec = Mid ( output_string , tmp_int1 , 999 ) 
+				}
+				else
+				{
+					# Pas de séparateur de décimales : il s'agit d'un entier
+					#@name 
+					#@desc 
+					tmp_str_int = output_string 
+					tmp_str_dec = "" 
+				}
+				tmp_str_left = tmp_str_int 
+				tmp_str_right = "" 
+				tmp_strlen_full = GetLength ( tmp_str_left ) 
+				tmp_strlen_left = tmp_strlen_full - 3 
+				WhileInt(tmp_strlen_left > 0 )
+				{
+					True()
+					{
+						tmp_str1 = Mid ( tmp_str_left , tmp_strlen_left , tmp_strlen_full ) 
+						tmp_str_left = Mid ( tmp_str_left , 0 , tmp_strlen_left ) 
+						tmp_str_right = "|" + tmp_str1 + tmp_str_right 
+						tmp_strlen_full = GetLength ( tmp_str_left ) 
+						tmp_strlen_left = tmp_strlen_full - 3 
+					}
+					EnterLoop() {}
+					ExitLoop() {}
+					NoLoop() {}
+				}
+				output_string = tmp_str_left + tmp_str_right + tmp_str_dec 
+			}
+			# Step 4 : Remplacement du séparateur de décimales
+			#@name 
+			#@desc 
+			IfChar(decimal_separator != "" )
+			{
+				IfChar(decimal_separator = "__NONE__" )
+				{
+					output_string = Replace ( output_string , "." , "" ) 
+				}
+				else
+				{
+					# Remplacer les espaces par des espaces insécables
+					#@name 
+					#@desc 
+					decimal_separator = Replace ( decimal_separator , " " , " " ) 
+					output_string = Replace ( output_string , "." , decimal_separator ) 
+				}
+			}
+			# Step 5 : Remplacement du séparateur de milliers temporaire par le séparateur définitif
+			#@name 
+			#@desc 
+			IfChar(thousands_separator != "" )
+			{
+				IfChar(thousands_separator = "__NONE__" )
+				{
+					output_string = Replace ( output_string , "|" , "" ) 
+				}
+				else
+				{
+					# Remplacer les espaces par des espaces insécables
+					#@name 
+					#@desc 
+					thousands_separator = Replace ( thousands_separator , " " , " " ) 
+					output_string = Replace ( output_string , "|" , thousands_separator ) 
+				}
+			}
+			# Step 6 : Suppression des espaces non significatifs
+			#@name 
+			#@desc 
+			output_string = Trim ( output_string ) 
+			IfChar(output_string = "" )
+			{
+				output_string = "0" 
+			}
+			IfChar(is_negative = "true" )
+			{
+				output_string = "-" + output_string 
+			}
+			# Step 7 : Longueur fixe avec alignement left ou right (defaut) ou center
+			#@name 
+			#@desc 
+			IfChar(( fixlength != "" ) And ( fixlength != "_" ) )
+			{
+				tmp_int1 = GetLength ( output_string ) 
+				IfInt(tmp_int1 < fixlength )
+				{
+					# Il faut ajouter des espaces pour obtenir une chaine à la longueur désirée
+					#@name 
+					#@desc 
+					tmp_int2 = fixlength - tmp_int1 
+					IfChar(align = "left" )
+					{
+						tmp_str1 = Space ( tmp_int2 ) 
+						output_string = output_string + tmp_str1 
+					}
+					else
+					{
+						IfChar(align = "center" )
+						{
+							tmp_int3 = tmp_int2 / 2 
+							tmp_int4 = tmp_int2 - tmp_int3 
+							IfInt(tmp_int3 > 0 )
+							{
+								tmp_str1 = Space ( tmp_int3 ) 
+							}
+							else
+							{
+								tmp_str1 = "" 
+							}
+							IfInt(tmp_int4 > 0 )
+							{
+								tmp_str2 = Space ( tmp_int4 ) 
+							}
+							else
+							{
+								tmp_str2 = "" 
+							}
+							output_string = tmp_str1 + output_string + tmp_str2 
+						}
+						else
+						{
+							tmp_str1 = Space ( tmp_int2 ) 
+							output_string = tmp_str1 + output_string 
+						}
+					}
+				}
+				else
+				{
+					IfInt(tmp_int1 = fixlength )
+					{
+						# La chaine numérique a la longueur attendue : ne rien faire
+					}
+					else
+					{
+						# Cas limite : la valeur attendue ne rentre pas. Si on la tronque elle devient fausse, donc remplacement par des étoiles (comme le fait excel si pas assez de place pour visualiser une valeur numérique)
+						#@name 
+						#@desc 
+						tmp_int2 = fixlength 
+						IfInt(tmp_int2 > 0 )
+						{
+							output_string = Space ( tmp_int2 ) 
+							output_string = Replace ( output_string , " " , "*" ) 
+						}
+						else
+						{
+							output_string = "" 
+						}
+					}
+				}
+			}
+		}
+	}
+}
+

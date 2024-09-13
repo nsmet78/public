@@ -1,0 +1,175 @@
+CreateFunction("format_date")
+{
+	AddParam("input_value", PARAM_STRING, "")
+	AddParam("output_value", PARAM_STRING, "")
+	AddParam("date_in", PARAM_STRING, "")
+	AddParam("date_out", PARAM_STRING, "")
+	AddParam("culture", PARAM_STRING, "")
+	DeclareString("tmp_param","",999)
+	DeclareString("tmp_input_format","",999)
+	DeclareString("tmp_output_format","",999)
+	DeclareString("tmp_lang","",10)
+	DeclareString("tmp_code_pays","",10)
+	DeclareString("tmp_code_pays_2","",2)
+	DeclareString("tmp_str1","",999)
+	DeclareString("tmp_str2","",999)
+	DeclareString("tmp_str3","",999)
+	DeclareInt("tmp_int1","",2)
+	DeclareInt("tmp_int2","",2)
+	DeclareString("found_wn","",5)
+	DeclareString("found_wns","",5)
+	DeclareString("found_mn","",5)
+	DeclareString("found_mns","",5)
+
+
+	Source()
+	{
+		IfChar(input_value != "" )
+		{
+			found_wn = "false" 
+			found_wns = "false" 
+			found_mn = "false" 
+			found_mns = "false" 
+			tmp_input_format = date_in 
+			tmp_output_format = date_out 
+			tmp_code_pays = culture 
+			tmp_code_pays_2 = Mid ( culture , 0 , 2 ) 
+			IfChar(tmp_code_pays = "" )
+			{
+				tmp_code_pays = "en-UK" 
+			}
+			IfChar(tmp_code_pays_2 = "" )
+			{
+				tmp_code_pays_2 = "en" 
+			}
+			IfChar(( tmp_input_format = "ISO" ) Or ( tmp_input_format = "" ) )
+			{
+				tmp_input_format = "YYYY-MM-DD" 
+			}
+			IfChar(tmp_output_format = "" )
+			{
+				IfChar(tmp_code_pays = "en-US" )
+				{
+					tmp_output_format = "[MM]/[DD]/[YYYY]" 
+				}
+				else
+				{
+					tmp_output_format = "[DD]/[MM]/[YYYY]" 
+				}
+			}
+			IfChar(tmp_output_format = "ISO" )
+			{
+				tmp_output_format = "[YYYY]-[MM]-[DD]" 
+			}
+			tmp_input_format = Replace ( tmp_input_format , "[" , "" ) 
+			tmp_input_format = Replace ( tmp_input_format , "]" , "" ) 
+			tmp_output_format = Replace ( tmp_output_format , "\\\\" , "((\\\\))" ) 
+			tmp_output_format = Replace ( tmp_output_format , "\\[" , "(([))" ) 
+			tmp_int1 = FindSubstring ( tmp_output_format , "[weekday-name]" , 0 ) 
+			IfInt(tmp_int1 >= 0 )
+			{
+				tmp_output_format = Replace ( tmp_output_format , "[weekday-name]" , "%A" ) 
+				found_wn = "true" 
+			}
+			tmp_int1 = FindSubstring ( tmp_output_format , "[weekday-name-short]" , 0 ) 
+			IfInt(tmp_int1 >= 0 )
+			{
+				tmp_output_format = Replace ( tmp_output_format , "[weekday-name-short]" , "%a" ) 
+				found_wns = "true" 
+			}
+			tmp_int1 = FindSubstring ( tmp_output_format , "[month-name]" , 0 ) 
+			IfInt(tmp_int1 >= 0 )
+			{
+				tmp_output_format = Replace ( tmp_output_format , "[month-name]" , "%B" ) 
+				found_mn = "true" 
+			}
+			tmp_int1 = FindSubstring ( tmp_output_format , "[month-name-short]" , 0 ) 
+			IfInt(tmp_int1 >= 0 )
+			{
+				tmp_output_format = Replace ( tmp_output_format , "[month-name-short]" , "%b" ) 
+				found_mns = "true" 
+			}
+			tmp_output_format = Replace ( tmp_output_format , "[D]" , "%w" ) 
+			tmp_output_format = Replace ( tmp_output_format , "[DD]" , "%d" ) 
+			tmp_output_format = Replace ( tmp_output_format , "[MM]" , "%m" ) 
+			tmp_output_format = Replace ( tmp_output_format , "[YYYY]" , "%Y" ) 
+			tmp_output_format = Replace ( tmp_output_format , "[YY]" , "%y" ) 
+			tmp_output_format = Replace ( tmp_output_format , "[WW]" , "%U" ) 
+			tmp_output_format = Replace ( tmp_output_format , "[DDD]" , "%j" ) 
+			tmp_output_format = Replace ( tmp_output_format , "(([))" , "[" ) 
+			tmp_output_format = Replace ( tmp_output_format , "((\\\\))" , "\\" ) 
+			tmp_lang = "french" 
+			IfChar(tmp_code_pays_2 = "fr" )
+			{
+				tmp_lang = "french" 
+			}
+			IfChar(tmp_code_pays_2 = "en" )
+			{
+				tmp_lang = "English" 
+			}
+			IfChar(tmp_code_pays_2 = "de" )
+			{
+				tmp_lang = "german" 
+			}
+			tmp_output_format = FormatDate ( input_value , tmp_input_format , tmp_output_format , tmp_lang ) 
+			IfChar(tmp_code_pays_2 = "fr" )
+			{
+				IfChar(found_wn = "true" )
+				{
+					tmp_output_format = Replace ( tmp_output_format , "Monday" , "lundi" ) 
+					tmp_output_format = Replace ( tmp_output_format , "Tuesday" , "mardi" ) 
+					tmp_output_format = Replace ( tmp_output_format , "Wednesday" , "mercredi" ) 
+					tmp_output_format = Replace ( tmp_output_format , "Thursday" , "jeudi" ) 
+					tmp_output_format = Replace ( tmp_output_format , "Friday" , "vendredi" ) 
+					tmp_output_format = Replace ( tmp_output_format , "Saturday" , "samedi" ) 
+					tmp_output_format = Replace ( tmp_output_format , "Sunday" , "dimanche" ) 
+				}
+				IfChar(found_mn = "true" )
+				{
+					tmp_output_format = Replace ( tmp_output_format , "January" , "janvier" ) 
+					tmp_output_format = Replace ( tmp_output_format , "February" , "février" ) 
+					tmp_output_format = Replace ( tmp_output_format , "March" , "mars" ) 
+					tmp_output_format = Replace ( tmp_output_format , "April" , "avril" ) 
+					tmp_output_format = Replace ( tmp_output_format , "May" , "mai" ) 
+					tmp_output_format = Replace ( tmp_output_format , "June" , "juin" ) 
+					tmp_output_format = Replace ( tmp_output_format , "July" , "juillet" ) 
+					tmp_output_format = Replace ( tmp_output_format , "August" , "août" ) 
+					tmp_output_format = Replace ( tmp_output_format , "September" , "septembre" ) 
+					tmp_output_format = Replace ( tmp_output_format , "October" , "octobre" ) 
+					tmp_output_format = Replace ( tmp_output_format , "November" , "novembre" ) 
+					tmp_output_format = Replace ( tmp_output_format , "December" , "décembre" ) 
+				}
+				IfChar(found_wns = "true" )
+				{
+					tmp_output_format = Replace ( tmp_output_format , "Mon " , "lun. " ) 
+					tmp_output_format = Replace ( tmp_output_format , "Tue " , "mar. " ) 
+					tmp_output_format = Replace ( tmp_output_format , "Wed " , "mer. " ) 
+					tmp_output_format = Replace ( tmp_output_format , "Thu " , "jeu. " ) 
+					tmp_output_format = Replace ( tmp_output_format , "Fri " , "ven. " ) 
+					tmp_output_format = Replace ( tmp_output_format , "Sat " , "sam. " ) 
+					tmp_output_format = Replace ( tmp_output_format , "Sun " , "dim. " ) 
+				}
+				IfChar(found_mns = "true" )
+				{
+					tmp_output_format = Replace ( tmp_output_format , "Jan " , "jan. " ) 
+					tmp_output_format = Replace ( tmp_output_format , "Feb " , "fév. " ) 
+					tmp_output_format = Replace ( tmp_output_format , "Mar " , "mars " ) 
+					tmp_output_format = Replace ( tmp_output_format , "Apr " , "avr. " ) 
+					tmp_output_format = Replace ( tmp_output_format , "Jun " , "juin " ) 
+					tmp_output_format = Replace ( tmp_output_format , "Jul " , "juil. " ) 
+					tmp_output_format = Replace ( tmp_output_format , "Aug " , "août " ) 
+					tmp_output_format = Replace ( tmp_output_format , "Sep " , "sept. " ) 
+					tmp_output_format = Replace ( tmp_output_format , "Oct " , "oct. " ) 
+					tmp_output_format = Replace ( tmp_output_format , "Nov " , "nov. " ) 
+					tmp_output_format = Replace ( tmp_output_format , "Dec " , "déc. " ) 
+				}
+			}
+			output_value = Replace ( tmp_output_format , " " , " " ) 
+		}
+		else
+		{
+			output_value = "" 
+		}
+	}
+}
+
